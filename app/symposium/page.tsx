@@ -54,17 +54,6 @@ const Page: React.FC = () => {
         <div className="hidden absolute transform translate-x-full transition-transform duration-500 ease-in-out right-0 w-2/3 h-full bg-gray-700 overflow-y-auto lg:static lg:translate-x-0 lg:w-2/5 lg:mx-2 rounded-lg">
           <Context className="" selected={context} />
         </div>
-        <button
-          type="button"
-          className="absolute left-20 transform -translate-x-12 bg-gray-800 text-white rounded-l py-2 px-4 lg:hidden"
-          onClick={(e) => {
-            e.currentTarget.parentElement
-              ?.querySelector(".transform")
-              ?.classList.toggle("translate-x-full");
-          }}
-        >
-          ☰
-        </button>
       </div>
     </div>
   );
