@@ -16,14 +16,17 @@ export async function POST(req: Request) {
 
     const { messages } = await req.json()
 
+    // Get the indexName from the path of the url that is fetching this endpoint
+    const referer = req.headers.get('referer') || ''
+    const indexName = referer.split('/').pop() || ''
+
     // Get the last message
     const lastMessage = messages[messages.length - 1]
 
     // Get the context from the last message
-    const context = await getContext(lastMessage.content, '')
+    const context = await getContext(lastMessage.content, '', indexName)
 
-
-    const prompt = [
+    let prompt = [
       {
         role: 'system',
         content: `AI assistant is a support agent for Pacific Symposium.
@@ -41,6 +44,25 @@ export async function POST(req: Request) {
       `,
       },
     ]
+
+    if (indexName === 'blackboard-developer') {
+      prompt = [
+        {
+          role: 'system',
+          content: `AI assistant is a support agent for Blackboard Developer.
+        The traits of AI include expert knowledge, helpfulness, cleverness, and articulateness.
+        AI is a well-behaved and well-mannered individual.
+        AI is always friendly, kind, and inspiring, and he is eager to provide vivid and thoughtful responses to the user.
+        START CONTEXT BLOCK
+        ${context}
+        END OF CONTEXT BLOCK
+        AI assistant will take into account any CONTEXT BLOCK that is provided in a conversation.
+        If the context does not provide the answer to question, the AI assistant will say, "I'm sorry, but I don't know the answer to that question.".
+        The assistant will not provide any emails or contacts, instead it will direct the user to email "
+        `,
+        },
+      ]
+    }
 
     // Ask OpenAI for a streaming chat completion given the prompt
     const response = await openai.createChatCompletion({

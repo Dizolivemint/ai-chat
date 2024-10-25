@@ -22,7 +22,7 @@ const Page: React.FC = () => {
         method: "POST",
         body: JSON.stringify({
           messages,
-          indexName: "symposium",
+          indexName: "blackboard-developer",
         }),
       });
       const { context } = await response.json();
@@ -51,11 +51,11 @@ const Page: React.FC = () => {
           handleInputChange={handleInputChange}
           handleMessageSubmit={handleMessageSubmit}
           messages={messages}
-          indexName="symposium"
+          indexName="blackboard-developer"
         />
-        {/* <div className="absolute transform translate-x-full transition-transform duration-500 ease-in-out right-0 w-2/3 h-full bg-gray-700 overflow-y-auto lg:static lg:translate-x-0 lg:w-2/5 lg:mx-2 rounded-lg">
+        <div className="hidden absolute transform translate-x-full transition-transform duration-500 ease-in-out right-0 w-2/3 h-full bg-gray-700 overflow-y-auto lg:static lg:translate-x-0 lg:w-2/5 lg:mx-2 rounded-lg">
           <Context className="" selected={context} />
-        </div> */}
+        </div>
       </div>
     </div>
   );

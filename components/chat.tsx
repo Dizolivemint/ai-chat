@@ -7,6 +7,7 @@ interface Chat {
   handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   handleMessageSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   messages: Message[];
+  indexName: string;
 }
 
 const Chat: React.FC<Chat> = ({

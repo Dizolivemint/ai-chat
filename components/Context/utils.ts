@@ -7,7 +7,8 @@ export async function crawlDocument(
   setCards: React.Dispatch<React.SetStateAction<ICard[]>>,
   splittingMethod: string,
   chunkSize: number,
-  overlap: number
+  overlap: number,
+  index: string
 ): Promise<void> {
   setEntries((seeded: IUrlEntry[]) =>
     seeded.map((seed: IUrlEntry) =>
@@ -24,6 +25,7 @@ export async function crawlDocument(
         chunkSize,
         overlap,
       },
+      index,
     }),
   });
 

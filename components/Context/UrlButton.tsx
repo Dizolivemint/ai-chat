@@ -11,6 +11,7 @@ export interface IUrlEntry {
   title: string;
   seeded: boolean;
   loading: boolean;
+  index: string;
 }
 
 interface IURLButtonProps {

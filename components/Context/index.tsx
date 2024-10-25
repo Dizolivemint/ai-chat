@@ -43,7 +43,8 @@ export const Context: React.FC<ContextProps> = ({ className, selected }) => {
             setCards,
             splittingMethod,
             chunkSize,
-            overlap
+            overlap,
+            entry.index
           )
         }
       />
